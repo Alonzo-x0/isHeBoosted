@@ -215,9 +215,17 @@ func getMatchID(enID string, key string) (string) {
 
 func main() {
 	
-	//summoner := Summoner{}
-	getJson("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/incompatible?api_key=RGAPI-fasef-070944a6a31f")
-	//println(summoner.Id)
+	err := godotenv.Load("killerkeys.env")
+	if err != nil {
+		log.Fatal(err)
+	}
+	key := os.Getenv("APIkey")
+
+	var enID, accID = getSummoner("mlgb nmsi", key)
+	fmt.Println(enID + "..." +accID)
+	//fmt.Println(key)
+	winRatio(accID, key)
+	
 }
 
 	
